@@ -21,6 +21,7 @@ def test_large_negative_indices():
     grid[(x,y)] = True
     assert grid[(x,y)]
 
+
 class TestPopulatedGrid(object):
 
     def setUp(self):
@@ -63,3 +64,9 @@ class TestPopulatedGrid(object):
 
         new_grid = self.grid.iterate()
         assert new_grid == next_grid
+
+    def test_grid_render(self):
+        assert self.grid.render((0,0), (5,3)) == """\
+_ _ _ X _
+_ _ X _ X
+_ _ _ _ _"""

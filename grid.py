@@ -50,3 +50,11 @@ class Grid(object):
         return candidates
     def __repr__(self):
         return repr(self._set)
+    def render(self, start_point, end_point):
+        rows = []
+        for y in xrange(start_point[1], end_point[1]):
+            cells = []
+            for x in xrange(start_point[0], end_point[0]):
+                cells.append("X" if (x, y) in self else "_")
+            rows.append(" ".join(cells))
+        return "\n".join(rows)
