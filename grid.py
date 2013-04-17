@@ -35,15 +35,13 @@ class Grid(object):
         return repr(self._set)
 
     def get_num_of_neighbors(self, x, y):
-        cells_to_test = [
-            (x-1, y-1), (x, y-1), (x+1, y-1),
-            (x-1, y),             (x+1, y),
-            (x-1, y+1), (x, y+1), (x+1, y+1),
-            ]
         count = 0
-        for x2, y2 in cells_to_test:
-            if (x2, y2) in self:
-                count += 1
+        for x2 in xrange(x-1, x+2):
+            for y2 in xrange(y-1, y+2):
+                if x2 == x and y2 == y:
+                    continue
+                if (x2, y2) in self:
+                    count += 1
         return count
 
     def iterate(self):
