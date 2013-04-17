@@ -12,16 +12,12 @@ class Grid(object):
                         self[(x,y)] = True
     def __contains__(self, key):
         return key in self._set
+    __getitem__ = __contains__
     def __setitem__(self, key, value):
         if value:
             self._set.add(key)
         else:
             self._set.discard(key)
-    def __getitem__(self, key):
-        # Could also be __contains__, but tests have not driven
-        # development of __contains__ yet.  Not sure that this is a
-        # good thing.
-        return key in self._set
     def __delitem__(self, key):
         self._set.discard(key)
     def __eq__(self, other):
