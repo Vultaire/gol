@@ -13,18 +13,27 @@ class Grid(object):
         if coords:
             for x, y in coords:
                 self[(x,y)] = True
+
     def __contains__(self, key):
         return key in self._set
+
     __getitem__ = __contains__
+
     def __setitem__(self, key, value):
         if value:
             self._set.add(key)
         else:
             self._set.discard(key)
+
     def __delitem__(self, key):
         self._set.discard(key)
+
     def __eq__(self, other):
         return self._set == other._set
+
+    def __repr__(self):
+        return repr(self._set)
+
     def get_num_of_neighbors(self, x, y):
         cells_to_test = [
             (x-1, y-1), (x, y-1), (x+1, y-1),
@@ -36,6 +45,7 @@ class Grid(object):
             if (x2, y2) in self:
                 count += 1
         return count
+
     def iterate(self):
         new_grid = Grid()
         for x, y in self.get_candidate_cells():
@@ -44,6 +54,7 @@ class Grid(object):
             if alive:
                 new_grid[(x, y)] = True
         return new_grid
+
     def get_candidate_cells(self):
         candidates = set()
         for x,y in self._set:
@@ -52,8 +63,7 @@ class Grid(object):
                     #print (x,y), ":", (x+x2, y+y2)
                     candidates.add((x+x2, y+y2))
         return candidates
-    def __repr__(self):
-        return repr(self._set)
+
     def render(self, start_point, end_point):
         rows = []
         for y in xrange(start_point[1], end_point[1]):
