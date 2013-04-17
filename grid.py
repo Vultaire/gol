@@ -3,8 +3,13 @@ from rules import alive_next_turn
 
 class Grid(object):
 
-    def __init__(self):
+    def __init__(self, data=None):
         self._set = set()
+        if data:
+            for y, row in enumerate(data):
+                for x, cell in enumerate(row):
+                    if cell:
+                        self[(x,y)] = True
     def __contains__(self, key):
         return key in self._set
     def __setitem__(self, key, value):
