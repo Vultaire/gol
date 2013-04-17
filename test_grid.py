@@ -72,24 +72,41 @@ _ _ X _ X
 _ _ _ _ _"""
 
 
-def test_create_grid_via_constructor():
-    grid = Grid(
-        bool_grid=[
-            [0,1,0],
-            [0,1,0],
-            [1,1,0],
-        ])
 
-    # Test instantiated data
-    assert not grid[(0,0)]
-    assert grid[(1,0)]
-    assert not grid[(2,0)]
-    assert not grid[(0,1)]
-    assert grid[(1,1)]
-    assert not grid[(2,1)]
-    assert grid[(0,2)]
-    assert grid[(1,2)]
-    assert not grid[(2,2)]
+class TestConstructor(object):
 
-    # Test point outside of supplied data
-    assert not grid[(999,-999)]
+    def test_create_grid_via_constructor_using_bool_grid(self):
+        grid = Grid(
+            bool_grid=[
+                [0,1,0],
+                [0,1,0],
+                [1,1,0],
+            ])
+        self._test(grid)
+
+    def test_create_grid_via_constructor_using_coordinates(self):
+        # Note: this data is the same as the above test, just
+        # specified differently.
+        grid = Grid(
+            coords=[
+                (1,0),
+                (1,1),
+                (0,2),
+                (1,2),
+            ])
+        self._test(grid)
+
+    def _test(self, grid):
+        # Test instantiated data
+        assert not grid[(0,0)]
+        assert grid[(1,0)]
+        assert not grid[(2,0)]
+        assert not grid[(0,1)]
+        assert grid[(1,1)]
+        assert not grid[(2,1)]
+        assert grid[(0,2)]
+        assert grid[(1,2)]
+        assert not grid[(2,2)]
+
+        # Test point outside of supplied data
+        assert not grid[(999,-999)]

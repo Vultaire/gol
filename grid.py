@@ -3,13 +3,16 @@ from rules import alive_next_turn
 
 class Grid(object):
 
-    def __init__(self, bool_grid=None):
+    def __init__(self, bool_grid=None, coords=None):
         self._set = set()
         if bool_grid:
             for y, row in enumerate(bool_grid):
                 for x, cell in enumerate(row):
                     if cell:
                         self[(x,y)] = True
+        if coords:
+            for x, y in coords:
+                self[(x,y)] = True
     def __contains__(self, key):
         return key in self._set
     __getitem__ = __contains__
