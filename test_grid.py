@@ -74,7 +74,7 @@ _ _ _ _ _"""
 
 def test_create_grid_via_constructor():
     grid = Grid(
-        [
+        bool_grid=[
             [0,1,0],
             [0,1,0],
             [1,1,0],

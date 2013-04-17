@@ -3,10 +3,10 @@ from rules import alive_next_turn
 
 class Grid(object):
 
-    def __init__(self, data=None):
+    def __init__(self, bool_grid=None):
         self._set = set()
-        if data:
-            for y, row in enumerate(data):
+        if bool_grid:
+            for y, row in enumerate(bool_grid):
                 for x, cell in enumerate(row):
                     if cell:
                         self[(x,y)] = True
