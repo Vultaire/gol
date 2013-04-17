@@ -50,17 +50,17 @@ class Grid(object):
         new_grid = Grid()
         for x, y in self.get_candidate_cells():
             neighbors = self.get_num_of_neighbors(x, y)
-            alive = alive_next_turn(neighbors, self[(x, y)])
-            if alive:
+            alive_now = self[(x, y)]
+            alive_next = alive_next_turn(neighbors, alive_now)
+            if alive_next:
                 new_grid[(x, y)] = True
         return new_grid
 
     def get_candidate_cells(self):
         candidates = set()
-        for x,y in self._set:
+        for x, y in self._set:
             for x2 in xrange(-1, 2):
                 for y2 in xrange(-1, 2):
-                    #print (x,y), ":", (x+x2, y+y2)
                     candidates.add((x+x2, y+y2))
         return candidates
 
