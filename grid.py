@@ -34,21 +34,14 @@ class Grid(object):
         return repr(self._set)
 
     def get_num_of_neighbors(self, x, y):
-        return sum(
-            [1
-             for x2 in xrange(x-1, x+2)
-             for y2 in xrange(y-1, y+2)
-             if (not (x2==x and y2==y))
-             and (x2, y2) in self])
-
-        #count = 0
-        #for x2 in xrange(x-1, x+2):
-        #    for y2 in xrange(y-1, y+2):
-        #        if x2 == x and y2 == y:
-        #            continue
-        #        if (x2, y2) in self:
-        #            count += 1
-        #return count
+        count = 0
+        for x2 in xrange(x-1, x+2):
+            for y2 in xrange(y-1, y+2):
+                if x2 == x and y2 == y:
+                    continue
+                if (x2, y2) in self:
+                    count += 1
+        return count
 
     def iterate(self):
         new_grid = Grid()
