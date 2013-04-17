@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import time
 
 from grid import Grid
@@ -22,12 +23,6 @@ GLIDER_DATA = [
     (10,12), (11,12), (12,12),
     ]
 
-def create_grid(data):
-    grid = Grid()
-    for x, y in data:
-        grid[x,y] = True
-    return grid
-
 def run_grid(grid, start_point, end_point, iterations):
     print "Initial state:"
     print grid.render(start_point, end_point)
@@ -37,11 +32,10 @@ def run_grid(grid, start_point, end_point, iterations):
         print "Iteration {0}:".format(i+1)
         grid = grid.iterate()
         print grid.render(start_point, end_point)
-    
 
 def main():
-    grid = create_grid(R_PENTOMINO_DATA)
-    #grid = create_grid(GLIDER_DATA)
+    grid = Grid(coords=R_PENTOMINO_DATA)
+    #grid = Grid(coords=GLIDER_DATA)
     start_point = (0, 0)
     end_point = (25, 25)  # (excluded from set)
     run_grid(grid, start_point, end_point, 25)
